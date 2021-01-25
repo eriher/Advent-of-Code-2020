@@ -3,8 +3,7 @@ import qualified Data.Set as Set
 import Data.Char
 
 stringToInt :: [Char] -> Int
-stringToInt = foldl addDigit 0
-   where addDigit num d = 10*num + digitToInt d
+stringToInt s = read s::Int
 
 --check if 2020 - x exits in set, if exists return x * (2020 - x), otherwise insert x
 checkAndInsert :: Int -> [Int] -> Set Int -> Int
@@ -23,8 +22,8 @@ checkTriples (i:ints) | val > 0 =  i * val
 
 main = do
     contents <- readFile "input.txt"
-    putStr "1: Pair or 2: triple?\n"
-    q <- getLine
-    if q == "1"
-    then return $ checkPairs  [ stringToInt x | x <- lines contents]
-    else return $ checkTriples  [ stringToInt x | x <- lines contents]
+    let p1 = checkPairs  [ stringToInt x | x <- lines contents]
+    print $ p1
+    let p2 = checkTriples  [ stringToInt x | x <- lines contents]
+    print $ p2
+    return ()

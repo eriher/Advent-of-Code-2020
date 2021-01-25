@@ -1,5 +1,5 @@
 import Data.Char
-import Data.Maybe
+
 -- | stringToInt, converts string to integer
 stringToInt :: [Char] -> Int
 stringToInt = foldl addDigit 0

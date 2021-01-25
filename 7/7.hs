@@ -46,7 +46,7 @@ main = do
       contents <- readFile "input.txt"
       --read contents, split into lines
       let bags = lines $ contents
-      --some dirty parsing to get a workable format. [parent, children..]
+      --parsing to get a workable format. [parent, children..]
       let l = [init $ splitOn "," $ concat [if isInfixOf "bag" z then  "," else z | z <- words bag, z /= "contain"] | bag <- bags]
       --parent -> child map. each child prepended with related Int. [parent, [children]]
       let cMap = [(head q, if isDigit (head $ head $ tail q) then map (\x -> x) (tail q) else [])| q <- l]

@@ -5,9 +5,8 @@ import qualified Data.Map as Map
 import Data.List
 
 
-stringToInt :: String -> Int
-stringToInt = foldl addDigit 0
-   where addDigit num d = 10*num + digitToInt d
+stringToInt :: [Char] -> Int
+stringToInt s = read s::Int
 
 checkLengthRange :: String -> Int -> Int -> Int -> Bool
 checkLengthRange s l lb ub = length s == l && n >= lb && n <= ub

@@ -1,9 +1,6 @@
 import Data.Char
 import Data.Bool
--- stringToInt :: [Char] -> [Int]
--- stringToInt = foldl addDigit 0
---    where addDigit num '-' = [num]
---          addDigit num d = 10*num + digitToInt d
+
          
 extractRange :: [Char] -> [Int]
 extractRange c = addDigit 0 c
@@ -13,13 +10,10 @@ extractRange c = addDigit 0 c
          addDigit num ('-':cs) = [num] ++ (addDigit 0 cs)
          addDigit num (c:cs) = addDigit (10*num + digitToInt c) cs
 
---get number of occurence: stringToInt $ (words l) !! 0
---get char: words l !! 1 !! 0
---the string: words l !! 2
+
 
 checkOccurence :: [Char] -> Int
 checkOccurence l = fromEnum $ occurence >= (range !! 0) && occurence <= (range !! 1)
---checkLine l = fromEnum $ range !! occurence
          where block = words l
                range = extractRange $ block !! 0
                token = (block !! 1) !! 0
@@ -28,7 +22,6 @@ checkOccurence l = fromEnum $ occurence >= (range !! 0) && occurence <= (range !
 
 checkPositions :: [Char] -> Int
 checkPositions l = fromEnum $ pos1 /= pos2
---checkLine l = fromEnum $ range !! occurence
          where block = words l
                range = extractRange $ block !! 0
                token = (block !! 1) !! 0
@@ -39,8 +32,8 @@ checkPositions l = fromEnum $ pos1 /= pos2
 
 main = do
     contents <- readFile "input.txt"
-    putStr "1 or 2?\n"
-    q <- getLine
-    if q == "1"
-    then return $ foldl (\acc line -> acc + checkOccurence line) 0 (lines contents)
-    else return $ foldl (\acc line -> acc + checkPositions line) 0 (lines contents)
+    let p1 = foldl (\acc line -> acc + checkOccurence line) 0 (lines contents)
+    print $ p1
+    let p2 = foldl (\acc line -> acc + checkPositions line) 0 (lines contents)
+    print $ p2
+    return ()
